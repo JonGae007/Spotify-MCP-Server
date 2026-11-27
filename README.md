@@ -4,6 +4,34 @@ Lokaler FastMCP-Server, der Spotify-Hördaten über den Benutzer-Login bereitste
 Claude die Top-Künstler, Top-Titel und kürzlich abgespielten Titel zugänglich macht.
 Der Server verwendet Authorization Code mit PKCE. Es wird kein Spotify-Client-Secret benötigt.
 
+## Projektaufbau
+
+```text
+.
+├── authorization.py                  # Spotify-Anmeldung (PKCE) und Token-Verwaltung
+├── main.py                           # MCP-Server und Spotify-Tools
+├── example.env                       # Vorlage für die lokale Konfiguration
+├── requirements.txt                  # Python-Abhängigkeiten
+├── .claude/
+│   └── skills/
+│       └── spotify-steckbrief/
+│           ├── SKILL.md              # Anleitung für den Steckbrief-Skill
+│           └── scripts/
+│               └── build_steckbrief.py
+├── steckbrief/                       # Erzeugte Profildaten und HTML-Karte (lokal)
+│   ├── facts.json
+│   ├── hypotheses.json
+│   └── <profil>/
+│       ├── raw/                      # Rohdaten aus den Spotify-Tools
+│       └── steckbrief.html
+├── .gitignore
+└── README.md
+```
+
+Die lokale Konfiguration (`.env`), der Spotify-Token-Cache
+(`.spotify_tokens.json`) und die persönlichen Steckbriefdaten unter `steckbrief/`
+werden nicht in Git eingecheckt.
+
 ## Voraussetzungen
 
 - macOS
