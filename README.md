@@ -52,7 +52,7 @@ Trage in `.env` Deine Client ID ein:
 ```env
 SPOTIFY_CLIENT_ID=deine-client-id
 SPOTIFY_REDIRECT_URI=http://127.0.0.1:3000
-MCP_HOST=127.0.0.1
+MCP_HOST=0.0.0.0
 MCP_PORT=8000
 MCP_PATH=/mcp
 ```
@@ -71,12 +71,14 @@ python3 main.py
 Der MCP-Endpunkt läuft unter:
 
 ```text
-http://127.0.0.1:8000/mcp
+http://<server-ip>:8000/mcp
 ```
 
 Das Terminal muss während der Nutzung geöffnet bleiben.
 
-Port und Pfad können in `.env` über `MCP_PORT` und `MCP_PATH` angepasst werden.
+Der MCP-Server bindet standardmäßig an `0.0.0.0` und ist damit über die Netzwerkadresse
+des Rechners erreichbar. Port und Pfad können in `.env` über `MCP_PORT` und `MCP_PATH`
+angepasst werden.
 Der Spotify-Callback bleibt separat auf `127.0.0.1:3000`.
 
 ## 4. In Claude einrichten
@@ -88,7 +90,7 @@ Connector hinzu:
 
 ```text
 Name: Spotify MCP
-MCP-Server-URL: http://127.0.0.1:8000/mcp
+MCP-Server-URL: http://<server-ip>:8000/mcp
 ```
 
 Starte Claude danach neu. Der Connector benötigt keinen öffentlichen HTTPS-Tunnel,
@@ -99,7 +101,7 @@ solange Claude auf demselben Mac läuft und der lokale Server aktiv ist.
 Bei laufendem Server:
 
 ```bash
-claude mcp add --transport http --scope user spotify http://127.0.0.1:8000/mcp
+claude mcp add --transport http --scope user spotify http://<server-ip>:8000/mcp
 claude mcp list
 ```
 
@@ -168,4 +170,5 @@ Die Dateien in `steckbrief/` enthalten persönliche Hördaten und sind durch
 - PKCE-Code-Verifier und OAuth-State werden nur während der Anmeldung lokal verwendet.
 - Ergebnisse sind explorative Hörprofil-Hypothesen, keine belastbaren Aussagen über
   Persönlichkeit, Alter, Gesundheit, Herkunft oder Lebensumstände.
-- Der Server ist standardmäßig nur über `127.0.0.1` erreichbar.
+- Der MCP-Server bindet standardmäßig an `0.0.0.0`; verwende bei Bedarf eine Firewall,
+  um den Zugriff auf vertrauenswürdige Netzwerke oder Geräte zu beschränken.

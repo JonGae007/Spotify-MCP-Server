@@ -176,7 +176,7 @@ def search_spotify(
 if __name__ == "__main__":
     mcp.run(
         transport="http",
-        host=os.getenv("MCP_HOST", "127.0.0.1"),
+        host=os.getenv("MCP_HOST", "0.0.0.0"),
         port=int(os.getenv("MCP_PORT", "8000")),
         path=os.getenv("MCP_PATH", "/mcp"),
     )

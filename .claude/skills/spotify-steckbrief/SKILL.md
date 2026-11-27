@@ -48,7 +48,7 @@ Das Skript erkennt am Inhalt, um welche Antwort es sich handelt; der Dateiname i
 ### 2. Fakten berechnen
 
 ```bash
-python3 skills/spotify-steckbrief/scripts/build_steckbrief.py facts steckbrief/raw/*.json -o steckbrief/facts.json
+python3 .claude/skills/spotify-steckbrief/scripts/build_steckbrief.py facts steckbrief/raw/*.json -o steckbrief/facts.json
 ```
 
 Option `--tz` (Standard `Europe/Berlin`) für die Ortszeit der Wiedergaben.
@@ -96,7 +96,7 @@ Zahlen in `patterns` immer aus `facts.json` übernehmen, nicht schätzen.
 ### 4. Grafik rendern
 
 ```bash
-python3 skills/spotify-steckbrief/scripts/build_steckbrief.py render steckbrief/facts.json steckbrief/hypotheses.json -o steckbrief/steckbrief.html
+python3 .claude/skills/spotify-steckbrief/scripts/build_steckbrief.py render steckbrief/facts.json steckbrief/hypotheses.json -o steckbrief/steckbrief.html
 ```
 
 Die Seite ist eine einzelne HTML-Datei ohne externe Abhängigkeiten, mit Hell- und
